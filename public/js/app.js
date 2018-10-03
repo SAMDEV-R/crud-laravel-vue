@@ -13905,7 +13905,27 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+var urlUsers = "http://jsonplaceholder.typicode.com/users";
+new Vue({
+    el: "#main",
+    created: function created() {
+        this.getUsers();
+    },
+    data: {
+        lists: []
+    },
+    methods: {
+        getUsers: function getUsers() {
+            var _this = this;
+
+            axios.get(urlUsers).then(function (response) {
+                _this.lists = response.data;
+            });
+        }
+    }
 });
 
 /***/ }),
