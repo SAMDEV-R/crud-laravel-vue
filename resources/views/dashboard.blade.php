@@ -9,7 +9,7 @@
     <br><br>
     <div  id="crud" class="row">    
         <div class="col-md-7">
-            <a href="#" class="btn btn-primary float-right">
+            <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#create">
             Nueva Tarea
             </a>
             
@@ -30,12 +30,14 @@
                     </tr>
                 </tbody>
             </table>
+            @include('create')
         </div>
         <div class="col-md-5">
             <pre>
                 @{{ $data }}        
             </pre>
         </div>
+        
     </div>
 
 
