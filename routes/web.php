@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
+
+
+Route::resource('tasks','TaskController',['except'=>'show']);
