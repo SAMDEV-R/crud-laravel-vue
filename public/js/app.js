@@ -13916,7 +13916,9 @@ new Vue({
         this.getKeeps();
     },
     data: {
-        keeps: []
+        keeps: [],
+        newKeep: "",
+        errors: []
     },
     methods: {
         getKeeps: function getKeeps() {
@@ -13934,6 +13936,22 @@ new Vue({
             axios.delete(url).then(function (response) {
                 _this2.getKeeps();
                 toastr.success('Eliminado correctamente');
+            });
+        },
+        createKeep: function createKeep() {
+            var _this3 = this;
+
+            var url = 'tasks';
+            axios.post(url, {
+                keep: this.newKeep
+            }).then(function (response) {
+                _this3.getKeeps();
+                _this3.newKeep = '';
+                _this3.errors = [];
+                $('#create').modal('hide');
+                toastr.success('Nueva tarea creada con éxito');
+            }).catch(function (error) {
+                _this3.errors = error.response.data;
             });
         }
 
