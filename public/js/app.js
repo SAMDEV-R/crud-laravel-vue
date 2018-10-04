@@ -13925,7 +13925,16 @@ new Vue({
             axios.get(urlKeeps).then(function (response) {
                 _this.keeps = response.data;
             });
+        },
+        deleteKeep: function deleteKeep(keep) {
+            var _this2 = this;
+
+            var url = 'tasks/' + keep.id;
+            axios.delete(url).then(function (response) {
+                _this2.getKeeps();
+            });
         }
+
     }
 });
 

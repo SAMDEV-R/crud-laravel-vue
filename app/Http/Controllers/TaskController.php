@@ -60,8 +60,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::findOrFail($id);
-        $task->delete();
+      
     }
 
     /**
@@ -72,6 +71,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
     }
 }
