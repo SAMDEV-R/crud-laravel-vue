@@ -7,8 +7,8 @@
 
 require('./bootstrap');
 
+window.toastr = require('toastr');
 window.Vue = require('vue');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -41,6 +41,7 @@ new Vue({
             var url = 'tasks/' + keep.id;
             axios.delete(url).then(response=>{
                 this.getKeeps();
+                toastr.success('Eliminado correctamente');
             })
         }
         
