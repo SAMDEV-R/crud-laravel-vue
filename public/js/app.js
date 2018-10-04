@@ -13918,6 +13918,7 @@ new Vue({
     data: {
         keeps: [],
         newKeep: "",
+        fillKeep: { id: '', keep: '' },
         errors: []
     },
     methods: {
@@ -13928,6 +13929,11 @@ new Vue({
             axios.get(urlKeeps).then(function (response) {
                 _this.keeps = response.data;
             });
+        },
+        editKeep: function editKeep(keep) {
+            this.fillKeep.id = keep.id;
+            this.fillKeep.keep = keep.keep;
+            $('#edit').modal('show');
         },
         deleteKeep: function deleteKeep(keep) {
             var _this2 = this;

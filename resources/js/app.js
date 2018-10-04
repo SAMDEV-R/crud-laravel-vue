@@ -30,7 +30,8 @@ new Vue({
     data: {
         keeps:[],
         newKeep: "",
-        errors: []
+        fillKeep: {id:'',keep:''},
+        errors: []    
     },
     methods: {
         getKeeps: function(){
@@ -38,6 +39,11 @@ new Vue({
             axios.get(urlKeeps).then(response=>{
                 this.keeps = response.data
             });
+        },
+        editKeep: function(keep){
+            this.fillKeep.id = keep.id;
+            this.fillKeep.keep = keep.keep;
+            $('#edit').modal('show');
         },
         deleteKeep:function(keep){
             var url = 'tasks/' + keep.id;
