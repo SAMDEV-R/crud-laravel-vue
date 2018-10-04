@@ -13904,25 +13904,26 @@ window.Vue = __webpack_require__(36);
 
 Vue.component('example-component', __webpack_require__(39));
 
-var app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
 
-var urlUsers = "http://jsonplaceholder.typicode.com/users";
+
 new Vue({
-    el: "#main",
+    el: "#crud",
     created: function created() {
-        this.getUsers();
+        this.getKeeps();
     },
     data: {
-        lists: []
+        keeps: []
     },
     methods: {
-        getUsers: function getUsers() {
+        getKeeps: function getKeeps() {
             var _this = this;
 
-            axios.get(urlUsers).then(function (response) {
-                _this.lists = response.data;
+            var urlKeeps = 'tasks';
+            axios.get(urlKeeps).then(function (response) {
+                _this.keeps = response.data;
             });
         }
     }
