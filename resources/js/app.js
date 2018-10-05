@@ -45,6 +45,19 @@ new Vue({
             this.fillKeep.keep = keep.keep;
             $('#edit').modal('show');
         },
+        updateKeep: function(id){
+            var url = 'tasks/' + id;
+            
+            axios.put(url,this.fillKeep).then(response=>{
+                this.getKeeps();
+                this.fillKeep = {id:'',keep:''};
+                this.errors = [],
+                $('#edit').modal('hide');
+                toastr.success('Actualizado correctamente');
+            }).catch(error=>{
+                this.errors = error.response.data
+            });
+        },
         deleteKeep:function(keep){
             var url = 'tasks/' + keep.id;
             axios.delete(url).then(response=>{

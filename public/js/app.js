@@ -13935,29 +13935,43 @@ new Vue({
             this.fillKeep.keep = keep.keep;
             $('#edit').modal('show');
         },
-        deleteKeep: function deleteKeep(keep) {
+        updateKeep: function updateKeep(id) {
             var _this2 = this;
+
+            var url = 'tasks/' + id;
+
+            axios.put(url, this.fillKeep).then(function (response) {
+                _this2.getKeeps();
+                _this2.fillKeep = { id: '', keep: '' };
+                _this2.errors = [], $('#edit').modal('hide');
+                toastr.success('Actualizado correctamente');
+            }).catch(function (error) {
+                _this2.errors = error.response.data;
+            });
+        },
+        deleteKeep: function deleteKeep(keep) {
+            var _this3 = this;
 
             var url = 'tasks/' + keep.id;
             axios.delete(url).then(function (response) {
-                _this2.getKeeps();
+                _this3.getKeeps();
                 toastr.success('Eliminado correctamente');
             });
         },
         createKeep: function createKeep() {
-            var _this3 = this;
+            var _this4 = this;
 
             var url = 'tasks';
             axios.post(url, {
                 keep: this.newKeep
             }).then(function (response) {
-                _this3.getKeeps();
-                _this3.newKeep = '';
-                _this3.errors = [];
+                _this4.getKeeps();
+                _this4.newKeep = '';
+                _this4.errors = [];
                 $('#create').modal('hide');
                 toastr.success('Nueva tarea creada con éxito');
             }).catch(function (error) {
-                _this3.errors = error.response.data;
+                _this4.errors = error.response.data;
             });
         }
 
